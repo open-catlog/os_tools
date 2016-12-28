@@ -1,0 +1,25 @@
+{
+  "name": "cpu_tools",
+  "version": "1.0.0",
+  "description": "cpu_tools",
+  "bin": "./bin/cpu_tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhuyali/cpu_tools.git"
+  },
+  "keywords": [
+    "cpu_tools"
+  ],
+  "author": "zhuyali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhuyali/cpu_tools/issues"
+  },
+  "homepage": "https://github.com/zhuyali/cpu_tools#readme",
+  "dependencies": {
+  }
+}
