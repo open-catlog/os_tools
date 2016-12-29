@@ -1,6 +1,6 @@
 # cpu_tools
 
-cpu_tools
+cpu_tools for centos6 && centos7
 
 ## Installation
 

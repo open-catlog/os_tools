@@ -9,3 +9,8 @@ build/
 *.sw*
 *.un~
 test
+disk/
+cpu/
+memory/
+network/
+process/
