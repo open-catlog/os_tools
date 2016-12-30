@@ -9,8 +9,8 @@ build/
 *.sw*
 *.un~
 test
-disk/
-cpu/
-memory/
-network/
-process/
+disk
+cpu
+memory
+network
+process

@@ -22,6 +22,5 @@
   "homepage": "https://github.com/zhuyali/cpu_tools#readme",
   "dependencies": {
     "async": "^2.1.4",
-    "co": "^4.6.0"
   }
 }
