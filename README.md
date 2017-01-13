@@ -1,11 +1,11 @@
-# cpu_tools
+# os_tools
 
-cpu_tools for centos6 && centos7
+os_tools for centos6 && centos7
 
 ## Installation
 
 ```
-$ npm i os_tools --save
+$ npm install os_tools
 ```
 
 ## License
