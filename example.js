@@ -7,10 +7,10 @@ var process = require('./lib/process');
 var network = require('./lib/network');
 var io = require('./lib/io');
 
-cpu.utilize_intime(3000, './cpu');
-disk.utilize(3000, './disk');
-memory.free(3000, './memory');
-network.transfer(3000, './network');
-io.busyness(3000, './io');
-process.count(3000, './process');
+cpu.utilize_intime(30000, './cpu');
+disk.utilize(30000, './disk');
+memory.free(30000, './memory');
+network.transfer(30000, './network');
+io.busyness(30000, './io');
+process.count(30000, './process');
 
