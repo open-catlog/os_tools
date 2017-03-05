@@ -1,8 +1,10 @@
 'use strict';
 
-exports.cpu = require('./lib/cpu');
-exports.process = require('./lib/process');
-exports.disk = require('./lib/disk');
-exports.memory = require('./lib/memory');
-exports.network = require('./lib/network');
-exports.io = require('./lib/busyness');
+exports.produceCpuInfo = require('./produce/cpu');
+exports.process = require('./produce/process');
+exports.disk = require('./produce/disk');
+exports.memory = require('./produce/memory');
+exports.network = require('./produce/network');
+exports.io = require('./produce/busyness');
+
+exports.gatherCpuInfo = require('./gather/cpu');

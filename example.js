@@ -1,11 +1,11 @@
 'use strict';
 
-var cpu = require('./lib/cpu');
-var disk = require('./lib/disk');
-var memory = require('./lib/memory');
-var process = require('./lib/process');
-var network = require('./lib/network');
-var io = require('./lib/io');
+var cpu = require('./produce/cpu');
+var disk = require('./produce/disk');
+var memory = require('./produce/memory');
+var process = require('./produce/process');
+var network = require('./produce/network');
+var io = require('./produce/io');
 
 cpu.utilize_intime(30000, './cpu');
 disk.utilize(30000, './disk');

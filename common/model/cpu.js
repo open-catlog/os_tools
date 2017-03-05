@@ -21,7 +21,7 @@ var cpuSchema = new Schema({
 cpuSchema.statics.add = function (server, utilization) {
   let context = this;
   return new Promise(function (resolve, reject) {
-    content.create({
+    context.create({
       server: server,
       utilization: utilization
     }, function (err, data) {
@@ -37,7 +37,9 @@ cpuSchema.statics.add = function (server, utilization) {
 cpuSchema.statics.getRecentByServer = function (server, seconds) {
   let context = this;
   let now = moment();
-  let secondsAgo = now.subtract(seconds, 'seconds');
+  let secondsAgo = moment().subtract(seconds, 'seconds');
+  console.log(now);
+  console.log(secondsAgo);
   return new Promise(function (resolve, reject) {
     context.find({
       server: server,
@@ -76,4 +78,4 @@ cpuSchema.statics.removeRecent = function (minutes) {
 mongoose.model('cpu', cpuSchema);
 var cpu = mongoose.model('cpu');
 
-model.exports = cpu;
+module.exports = cpu;
