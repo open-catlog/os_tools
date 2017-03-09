@@ -2,11 +2,12 @@
 
 os_tools for centos6 && centos7
 
-## Installation
+## Exec
 
 ```
-$ npm install os_tools
+$ node index.js
 ```
+
 
 ## License
 
