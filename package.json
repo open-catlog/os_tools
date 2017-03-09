@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/zhuyali/os_tools#readme",
   "dependencies": {
+    "address": "^1.0.1",
     "async": "^2.1.4",
     "moment": "^2.17.1",
     "mongoose": "^4.8.5",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "punt": "^2.3.0"
   }
 }
