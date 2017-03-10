@@ -17,12 +17,12 @@ var child = new (forever.Monitor)(__filename, {
   silent: true
 });
 
-cpu(5000, server);
-process(5000, server);
-disk(5000, server);
-memory(5000, server);
-network(5000, server);
-io(5000, server);
+cpu(30000, server);
+process(30000, server);
+disk(30000, server);
+memory(30000, server);
+network(30000, server);
+io(30000, server);
 
 child.on('watch:restart', function(info) {
     console.error('Restaring script because ' + info.file + ' changed');
