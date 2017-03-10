@@ -4,7 +4,7 @@
   "description": "os_tools",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nohup node index.js &"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "dependencies": {
     "address": "^1.0.1",
     "async": "^2.1.4",
+    "forever-monitor": "^1.7.1",
     "moment": "^2.17.1",
     "mongoose": "^4.8.5",
     "path": "^0.12.7",
