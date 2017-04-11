@@ -1,6 +1,7 @@
 'use strict';
 
 var punt = require('punt');
+var detect = require('detect-port');
 var forever = require('forever-monitor');
 
 var cpu = require('./lib/cpu');
@@ -10,8 +11,20 @@ var memory = require('./lib/memory');
 var network = require('./lib/network');
 var io = require('./lib/io');
 
-var client = punt.bind('127.0.0.1:5000');
-var server = punt.connect('10.1.2.10:5000');
+var clientPort = 5000;
+var serverPort = 5000;
+
+detect(clientPort, (err, _port) => {
+    if (err) {
+        console.log(err);
+    } else {
+        clientPort = _port;
+    }
+});
+
+console.log(`client start at port:${clientPort}`);
+var client = punt.bind(`127.0.0.1:${clientPort}`);
+var server = punt.connect(`10.1.2.10:${serverPort}`);
 var child = new (forever.Monitor)(__filename, {
   max: 3,
   silent: true
