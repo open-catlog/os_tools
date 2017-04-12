@@ -4,7 +4,7 @@
   "description": "os_tools",
   "main": "index.js",
   "scripts": {
-    "start": "nohup node index.js &"
+    "start": "nohup node monitor.js &"
   },
   "repository": {
     "type": "git",
@@ -22,11 +22,7 @@
   "dependencies": {
     "address": "^1.0.1",
     "async": "^2.1.4",
-    "detect-port": "^1.1.1",
     "forever-monitor": "^1.7.1",
-    "moment": "^2.17.1",
-    "mongoose": "^4.8.5",
-    "path": "^0.12.7",
     "punt": "^2.3.0"
   }
 }
