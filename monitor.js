@@ -20,7 +20,7 @@ child.on('exit:code', function (code) {
 });
 
 child.on('exit', function () {
-  console.log('your-filename.js has exited after 3 restarts');
+  console.log('index.js has exited after 3 restarts');
 });
 
 child.start();
