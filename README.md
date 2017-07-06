@@ -1,24 +1,39 @@
-# os_tools
+- 简介
 
-os_tools for centos6 && centos7
+  用来采集机器硬件信息的模块，主要包括 CPU 利用率、内存占用情况、磁盘占用情况、I/O、网络和进程数。该模块可以与 [monitor-server](https://github.com/open-catlog/monitor-server) 进行配合使用。
 
-## Exec
+- 采集模块
 
-```
-$ node index.js
-```
+  - CPU 信息采集模块
 
+	  利用文件'/proc/stat'文件对 CPU 利用率进行计算。在 Linux 下，CPU 利用率分为用户态，系统态和空闲态，分别表示CPU处于用户态执行的时间，系统内核执行的时间，和空闲系统进程执行的时间，三者之和就是CPU的总时间，当没有用户进程、系统进程等需要执行的时候，CPU就执行系统缺省的空闲进程。那么，CPU 的利用率就是非空闲进程占用时间的比例，即CPU执行非空闲进程的时间 / CPU总的执行时间。
 
-## License
+  - 磁盘信息采集模块
 
-The MIT License (MIT)
+	利用命令'df -h'来显示目前磁盘空间和使用情况。运行该命令，从左到右的5个参数分别是：文件系统、容量、已用、可用、已用%、挂载点。可以发现，已用 + 可用 != 容量，这是因为预留了少量空间供系统管理员使用。
 
-Copyright (c) 2016 zyl
+  - 进程数获取模块
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+	  利用命令'cat /proc/sys/fs/file-nr'，在 Linux 下，任何事物都以文件的形式存在，因而进程数可以通过统计打开文件数目来获取，其中第一个数表示当前系统已分配使用的打开文件描述符。
+    
+  - 内存空闲信息采集模块
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+	  利用命令'free -m'可以查看系统内存使用情况，其中 Mem 表示物理内存统计，-/+ buffers/cache 表示物理内存的缓存统计，Swap 表示磁盘上交换分区的使用情况，这里我们只关心 Mem 和 Swap。其中物理内存总量为 total1，而系统当前实际可用内存为 free2，实际的内存使用总量为 used2，因而空闲内存比例为 free2 / total1。而 Swap 的空闲比例为 free / total。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  - io 信息获取模块
 
+	利用命令'iostat -k'可以用于监控系统设备的 io 负载情况，其中 kB_read 代表读取的总数据量，kB_wrtn 代表写入的总数据量。
 
+  - 网络传输速率获取模块
+
+	利用命令'ifconfig'可以获取到网络接口配置信息。其中可以获取到每块网卡接收、发送数据字节数的统计信息。
+
+- 采集去向
+	
+	通过 UDP 通信，将信息发送给 master，这里的 master 主要指向 [monitor-server](https://github.com/open-catlog/monitor-server)
+
+- 整体流程
+
+	Step 1：启动获取硬件信息的进程，并向 master 发送数据。
+	 
+	Step 2：启动服务端主进程，接收来自 slave 的信息，并存储入数据库中。
